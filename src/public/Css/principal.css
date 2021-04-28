@@ -130,6 +130,10 @@
   }
 }
 
+.animate__animated.animate__bounceInUp {
+  --animate-duration: 1.5s;
+}
+
 * {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;

@@ -1,5 +1,10 @@
 @import "form";
 
+
+.animate__animated.animate__bounceInUp {
+     --animate-duration: 1.5s;
+   }
+
 * {
      box-sizing: border-box;
      font-family: 'Nunito', sans-serif;
