@@ -1,0 +1,145 @@
+$background: #fff;
+$headerColor: #851de0;
+$button: #c355f5;
+$color: #FFF;
+$hover: #52057b;
+$height: 750px;
+
+.loginConteiner {
+     background-color: #fff;
+     flex-grow: 0.1;
+     display: flex;
+     flex-flow: column nowrap;
+     border-radius: 15px;
+     box-shadow: 5px 5px 2px 2px rgba($color: #eee, $alpha: 0.3);
+
+     img {
+          width: 200px;
+          margin-bottom: 30px;
+     }
+}
+
+.loginHeader {
+     background-color: $headerColor;
+     color: $color;
+     text-align: center;
+     font-size: 15px;
+     border-radius: 15px 15px 0 0;
+
+     h1 {
+          padding: 20px;
+     }
+}
+
+.loginFormConteiner {
+     padding: 30px;
+
+     .loginForm {
+          width: 100%;
+          display: flex;
+          flex-flow: column wrap;
+          justify-content: center;
+          align-items: center;
+
+          .loginFormUser,
+          .loginFormPassword {
+               width: 100%;
+               margin-bottom: 20px;
+
+               label {
+                    font-size: 25px;
+                    text-align: left;
+                    display: inline-block;
+                    width: 180px;
+               }
+
+               input {
+                    padding: 0;
+                    margin: 0;
+                    height: 40px;
+                    width: 50%;
+                    border: none;
+                    border-radius: 10px;
+                    box-shadow: 1px 1px 2px 1px rgba($color: #000000, $alpha: 0.5);
+                    outline: none;
+                    font-weight: bold;
+
+                    &:focus {
+
+                         background-color: #eee;
+                    }
+               }
+
+
+          }
+
+          input[type="submit"] {
+               // background-color: $button;
+               // margin-top: 20px;
+               // padding: 15px;
+               // color: $color;
+               // border-radius: 15px;
+               // border: none;
+               // box-shadow: 2px 2px 2px 2px rgba($color: #000000, $alpha: 0.3);
+
+               // &:hover {
+               //      background-color: $hover;
+               //      box-shadow: 2px 2px 2px 3px rgba($color: #000000, $alpha: 0.5);
+               //      cursor: pointer;
+               // }
+
+
+
+
+               background-image: linear-gradient(to right, $button 0%, #614385 100%);
+               border: none;
+               margin-top: 25px;
+               padding: 15PX;
+               text-align: center;
+               text-transform: uppercase;
+               transition: 0.5s;
+               background-size: 200% auto;
+               color: white;
+               box-shadow: 0 0 20px #eee;
+               border-radius: 10px;
+               display: block;
+               cursor: pointer;
+
+               &:hover {
+                    background-position: right center;
+                    /* change the direction of the change here */
+                    color: #fff;
+                    text-decoration: none;
+               }
+
+          }
+     }
+}
+
+
+/// medias query 
+@media (max-width: 500px) {
+
+     body {
+          height: 1000px;
+     }
+     .loginConteiner {
+          height: $height;
+     }
+
+     .loginFormConteiner {
+          .loginForm {
+
+               .loginFormUser,
+               .loginFormPassword {
+                    width: 100%;
+
+                    input {
+                         width: 100%;
+                         margin: 20px 0;
+                    }
+               }
+          }
+
+     }
+}
