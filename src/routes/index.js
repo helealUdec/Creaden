@@ -20,7 +20,8 @@ router.post('/', (req, res) => {
         let info = req.body;
         const conection = require('../modules/conection.js');
         conection.query(`select * from userLogin where userName = '${info['userName']}'`, (error, datos) => {
-            
+            if(error) throw error;
+            else {
                 if (datos != null) {
                     if (datos[0].userPassword == info['userPassword']) {
                         res.render('index', { inicio: true, cancel: false });
@@ -29,6 +30,7 @@ router.post('/', (req, res) => {
                     }
 
                 }
+            }
         });
     } catch (error) {
         res.render('index', { inicio: false, cancel: true });
