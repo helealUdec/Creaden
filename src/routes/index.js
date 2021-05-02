@@ -31,7 +31,7 @@ router.post('/', (req, res) => {
                 }
         });
     } catch (error) {
-
+        res.render('index', { inicio: false, cancel: true });
     }
 
 
