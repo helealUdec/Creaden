@@ -24,16 +24,16 @@ router.post('/', (req, res) => {
             else {
                 if (datos != null) {
                     if (datos[0].userPassword == info['userPassword']) {
-                        res.render('index', { inicio: true, cancel: false });
+                        res.render('./index', { inicio: true, cancel: false });
                     } else {
-                        res.render('index', { inicio: false, cancel: true });
+                        res.render('./index', { inicio: false, cancel: true });
                     }
 
                 }
             }
         });
     } catch (error) {
-        res.render('index', { inicio: false, cancel: true });
+        res.render('./index', { inicio: false, cancel: true });
     }
 
 
