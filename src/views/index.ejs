@@ -3,6 +3,7 @@
 
 <head>
      <%- include('partials/head') %>
+     <link rel="stylesheet" href="/Css/form.css">
      <title>Document <%= 23%></title>
 </head>
 
@@ -10,9 +11,15 @@
      <!-- formulario de ingrreso -->
                <%- include('partials/formLogin')%>
                <input type="submit" value="Iniciar Sesion">
+               <a href="register">Registrarse</a>
           </form>
      </section>
 </div>
+<script src="/Js/ingrreso.js"></script>
+<script>
+     if(<%= inicio%>) alert('inicio exitoso');
+     if(<%= cancel%>) alert('algo anda mal');
+</script>
 </body>
 
 </html>

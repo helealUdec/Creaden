@@ -1,0 +1,48 @@
+$height: 850px;
+
+.loginConteiner {
+
+     img {
+          width: 180px;
+     }
+}
+
+.loginFormConteiner {
+     .loginForm {
+          .confirmPassword {
+               label {
+                    width: 185px;
+               }
+          }
+     }
+}
+
+
+
+
+
+@media (max-width: 500px) {
+
+     .loginConteiner {
+          height: $height;
+     }
+
+     .loginFormConteiner {
+          .loginForm {
+               .confirmPassword {
+                    width: 100%;
+                    flex-direction: column;
+
+                    label {
+                         width: 100%;
+                    }
+
+                    input {
+                         margin-top: 20px;
+                         width: 100%;
+                    }
+               }
+          }
+     }
+
+}

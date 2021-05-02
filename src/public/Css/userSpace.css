@@ -1,0 +1,86 @@
+@charset "UTF-8";
+.userSpaceConteiner {
+  background-color: #FFF;
+  width: 60%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column nowrap;
+          flex-flow: column nowrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 90%;
+  border-radius: 15px;
+  -webkit-box-shadow: 5px 5px 2px 2px rgba(238, 238, 238, 0.3);
+          box-shadow: 5px 5px 2px 2px rgba(238, 238, 238, 0.3);
+}
+
+.userPostArea {
+  padding: 20px;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row wrap;
+          flex-direction: row wrap;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+}
+
+.userImage {
+  width: 80px;
+  height: 80px;
+  border-radius: 80px;
+}
+
+.userTextArea {
+  padding: 20px;
+  width: 100%;
+  background-color: #eee;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row nowrap;
+          flex-flow: row nowrap;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+}
+
+.userTextArea .toPost {
+  height: 40px;
+}
+
+.userTextArea .userText {
+  width: 90%;
+  border-bottom: 1px solid black;
+  cursor: text;
+  outline: none;
+}
+
+.userTextArea .userText:empty::before {
+  position: absolute;
+  content: "Escribe aquí...";
+}
+
+.userPublicationArea {
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  background-color: #aaa;
+  height: 300px;
+}
+/*# sourceMappingURL=userSpace.css.map */

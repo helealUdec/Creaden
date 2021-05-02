@@ -2,8 +2,10 @@ const express = require('express');
 const morgan = require('morgan');
 const path = require('path');
 const app = express();
+const bodyparser = require('body-parser');
 
-
+app.use(bodyparser.urlencoded({ extended: true }))
+app.use(bodyparser.json());
 app.set('port', process.env.PORT || 4000);
 app.set('views', path.join(__dirname,'views'));
 app.set('view engine', 'ejs' );
@@ -19,3 +21,5 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.listen(app.get('port'), () => {
      console.log('servidor iniciado en el puerto ' + app.get('port'));
 });
+
+

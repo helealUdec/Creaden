@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+     <%- include('partials/head') %>
+     <link rel="stylesheet" href="/Css/form.css">
+     <link rel="stylesheet" href="/Css/register.css">
+     
+     <title>Document <%= 23%></title>
+</head>
+
+<body>
+     <!-- formulario de ingrreso -->
+               <%- include('partials/formLogin')%>
+               <div class="confirmPassword">
+                    <label>Confirmar contrasena:</label>
+                    <input type="password" name="confirmPassword" class="confirm">
+               </div>
+               <input type="submit"  value="Registrarse" class="submit">
+               <a href="/">Iniciar Sesion</a>
+          </form>
+     </section>
+     
+    
+</div>
+
+<script src="/Js/verificar.js"></script>
+<script>
+
+     let registro = <%= registro%>;
+     if(registro) alert('Registro exitoso');
+      
+</script>
+</body>
+
+</html>

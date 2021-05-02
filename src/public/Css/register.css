@@ -1,0 +1,28 @@
+.loginConteiner img {
+  width: 180px;
+}
+
+.loginFormConteiner .loginForm .confirmPassword label {
+  width: 185px;
+}
+
+@media (max-width: 500px) {
+  .loginConteiner {
+    height: 850px;
+  }
+  .loginFormConteiner .loginForm .confirmPassword {
+    width: 100%;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  .loginFormConteiner .loginForm .confirmPassword label {
+    width: 100%;
+  }
+  .loginFormConteiner .loginForm .confirmPassword input {
+    margin-top: 20px;
+    width: 100%;
+  }
+}
+/*# sourceMappingURL=register.css.map */
