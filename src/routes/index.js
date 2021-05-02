@@ -12,7 +12,7 @@ const router = express.Router();
 
 //  inicio de sesion
 router.get('/', (req, res) => {
-    res.render('index', { inicio: false, cancel: false });
+    res.render('./index', { inicio: false, cancel: false });
 });
 
 router.post('/', (req, res) => {
