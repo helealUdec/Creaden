@@ -16,25 +16,26 @@ router.get('/', (req, res) => {
 });
 
 router.post('/', (req, res) => {
-    try {
-        let info = req.body;
-        const conection = require('../modules/conection.js');
-        conection.query(`select * from userLogin where userName = '${info['userName']}'`, (error, datos) => {
-            if(error) throw error;
-            else {
-                if (datos != null) {
-                    if (datos[0].userPassword == info['userPassword']) {
-                        res.render('./index', { inicio: true, cancel: false });
-                    } else {
-                        res.render('./index', { inicio: false, cancel: true });
-                    }
-
+    let info = req.body;
+    const conection = require('../modules/conection.js');
+    conection.query(`select * from userLogin where userName = '${info['userName']}'`, (error, datos) => {
+        try {
+            if (error) res.render('./index', { inicio: false, cancel: true });
+            if (datos != null) {
+                if (datos[0].userPassword == info['userPassword']) {
+                    res.render('./index', { inicio: true, cancel: false });
+                } else {
+                    res.render('./index', { inicio: false, cancel: true });
                 }
+
             }
-        });
-    } catch (error) {
-        res.render('./index', { inicio: false, cancel: true });
-    }
+        } catch (errores) {
+            res.render('./index', { inicio: false, cancel: true });
+        }
+
+
+});
+
 
 
 
