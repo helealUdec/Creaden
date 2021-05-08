@@ -22,7 +22,7 @@ router.post('/', (req, res) => {
             if (error) res.render('./index', { inicio: false, cancel: true });
             if (datos != null) {
                 if (datos[0].userPassword == info['userPassword']) {
-                    res.redirect('/userSpace' + `${info['userName']}`);
+                    res.redirect('/userspace' + `${info['userName']}`);
                 } else {
                     res.render('./index', { inicio: false, cancel: true });
                 }
@@ -61,7 +61,7 @@ router.post('/register', (req, res) => {
 });
 
 // espacio de cada usuario
-router.get('/userSpace:userName', (req, res) => {
+router.get('/userspace:userName', (req, res) => {
     let userName = req.params.userName;
 
     console.log(userName);
@@ -76,12 +76,12 @@ router.get('/userSpace:userName', (req, res) => {
             ];
         }
 
-        res.render('userSpace.ejs', { datos: arreglo, userName: userName });
+        res.render('userspace.ejs', { datos: arreglo, userName: userName });
     });
 
 });
 
-router.post('/userSpace:userName', (req, res) => {
+router.post('/userspace:userName', (req, res) => {
     let userName = req.body.userName;
     let text = req.body.text;
     let date = req.body.date;
@@ -101,7 +101,7 @@ router.post('/userSpace:userName', (req, res) => {
             ];
         }
 
-        res.render('userSpace.ejs', { datos: arreglo , userName: userName });
+        res.render('userspace.ejs', { datos: arreglo , userName: userName });
     });
 
 });
