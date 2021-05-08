@@ -53,7 +53,7 @@ router.post('/register', (req, res) => {
                 textPost varchar(500),
                 primary key (id)
            );`);
-            res.render('register', { registro: true });
+            res.render('./register', { registro: true });
         }
     });
 
@@ -75,7 +75,7 @@ router.get('/userSpace', (req, res) => {
             ];
         }
 
-        res.render('./userSpace', { datos: arreglo, userName: userName });
+        res.render('userSpace', { datos: arreglo, userName: userName });
     });
 
 });
