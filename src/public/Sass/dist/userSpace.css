@@ -28,7 +28,12 @@
 .userPostArea .userInformation {
   margin-top: 20px;
   margin-left: 20px;
+  width: 80%;
 }
+.userPostArea .salir {
+  font-size: 40px;
+}
+
 .userTextArea {
   padding: 20px;
   width: 100%;

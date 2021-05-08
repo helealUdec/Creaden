@@ -17,6 +17,7 @@
                     <span class="time">11:11:11</span>
                     <p class="userName"><%= userName%></p>
                </div>
+               <a href="../" class=""><i class="fas fa-power-off salir"></i></a>
           </div>
           <div class="userTextArea">
                <div contenteditable="true" class="userText"></div>
@@ -33,11 +34,13 @@
           </div>
      </div>
      <script>
-         
+          let fecha = new Date();
+          let cadena = `${fecha.getFullYear()}-${fecha.getMonth()+1}-${fecha.getDay()+1}`;
+          document.querySelector('.time').innerText = cadena;
           let boton = document.querySelector('.toPost');
           boton.addEventListener('click', () => {
                let texto = document.querySelector('.userText').innerText;
-               let fecha = new Date();
+               
                let datePost;
 
                datePost =

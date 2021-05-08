@@ -81,13 +81,13 @@ router.get('/userSpace:userName', function (req, res) {
       arreglo[i] = [data[i].userName, data[i].datePost, data[i].textPost];
     }
 
-    res.render('./register', {
+    res.render('./userSpace', {
       datos: arreglo,
       userName: userName
     });
   });
 });
-router.post('/userSpace', function (req, res) {
+router.post('/userSpace:userName', function (req, res) {
   var userName = req.body.userName;
   var text = req.body.text;
   var date = req.body.date;
@@ -106,7 +106,7 @@ router.post('/userSpace', function (req, res) {
       arreglo[i] = [data[i].userName, data[i].datePost, data[i].textPost];
     }
 
-    res.render('userSpace', {
+    res.render('./userSpace', {
       datos: arreglo,
       userName: userName
     });

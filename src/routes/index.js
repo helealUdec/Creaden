@@ -76,12 +76,12 @@ router.get('/userSpace:userName', (req, res) => {
             ];
         }
 
-        res.render('./register', { datos: arreglo, userName: userName });
+        res.render('./userSpace', { datos: arreglo, userName: userName });
     });
 
 });
 
-router.post('/userSpace', (req, res) => {
+router.post('/userSpace:userName', (req, res) => {
     let userName = req.body.userName;
     let text = req.body.text;
     let date = req.body.date;
@@ -101,7 +101,7 @@ router.post('/userSpace', (req, res) => {
             ];
         }
 
-        res.render('userSpace', { datos: arreglo , userName: userName });
+        res.render('./userSpace', { datos: arreglo , userName: userName });
     });
 
 });
