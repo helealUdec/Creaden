@@ -22,7 +22,7 @@ router.post('/', (req, res) => {
             if (error) res.render('./index', { inicio: false, cancel: true });
             if (datos != null) {
                 if (datos[0].userPassword == info['userPassword']) {
-                    res.redirect('./userSpace/' + `${info['userName']}`);
+                    res.redirect('/userSpace/' + `${info['userName']}`);
                 } else {
                     res.render('./index', { inicio: false, cancel: true });
                 }
@@ -76,7 +76,7 @@ router.get('/userSpace:userName', (req, res) => {
             ];
         }
 
-        res.render('./userSpace', { datos: arreglo, userName: userName });
+        res.render('userSpace', { datos: arreglo, userName: userName });
     });
 
 });
@@ -101,7 +101,7 @@ router.post('/userSpace', (req, res) => {
             ];
         }
 
-        res.render('./userSpace', { datos: arreglo , userName: userName });
+        res.render('userSpace', { datos: arreglo , userName: userName });
     });
 
 });
