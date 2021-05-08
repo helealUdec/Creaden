@@ -76,7 +76,7 @@ router.get('/userSpace:userName', (req, res) => {
             ];
         }
 
-        res.render('userSpace', { datos: arreglo, userName: userName });
+        res.render('./register', { datos: arreglo, userName: userName });
     });
 
 });

@@ -81,7 +81,7 @@ router.get('/userSpace:userName', function (req, res) {
       arreglo[i] = [data[i].userName, data[i].datePost, data[i].textPost];
     }
 
-    res.render('userSpace', {
+    res.render('./register', {
       datos: arreglo,
       userName: userName
     });
