@@ -78,7 +78,7 @@ router.get('/userspace:userName', function (req, res) {
     var arreglo = [];
 
     for (var i = 0; i < n; i++) {
-      arreglo[i] = [data[i].userName, data[i].datePost, data[i].textPost];
+      arreglo[i] = [data[i].id, data[i].userName, data[i].datePost, data[i].textPost];
     }
 
     res.render('userspace.ejs', {
@@ -91,9 +91,16 @@ router.post('/userspace:userName', function (req, res) {
   var userName = req.body.userName;
   var text = req.body.text;
   var date = req.body.date;
+  var deletePost = req.body["delete"];
 
   if (text) {
     conection.query("insert into ".concat(userName, "Data (userName, datePost, textPost) values (\"").concat(userName, "\", \"").concat(date, "\", \"").concat(text, "\")"), function (error) {
+      if (error) console.log(error);
+    });
+  }
+
+  if (deletePost) {
+    conection.query("delete from ".concat(userName, "Data where id = ").concat(deletePost), function (error) {
       if (error) console.log(error);
     });
   }
@@ -103,7 +110,7 @@ router.post('/userspace:userName', function (req, res) {
     var arreglo = [];
 
     for (var i = 0; i < n; i++) {
-      arreglo[i] = [data[i].userName, data[i].datePost, data[i].textPost];
+      arreglo[i] = [data[i].id, data[i].userName, data[i].datePost, data[i].textPost];
     }
 
     res.render('userspace.ejs', {

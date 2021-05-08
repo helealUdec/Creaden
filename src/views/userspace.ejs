@@ -25,6 +25,7 @@
                     <input type="text" name="userName" value="<%= userName%>">
                     <input type="text" id="text" name="text" value="">
                     <input type="text" id="date" name="date" value="">
+                    <input type="text" id="delete" name="delete" value="">
                </form>
                <button type="submit" class="toPost"><i class="fas fa-paper-plane "></i></button>
 
@@ -35,19 +36,14 @@
      </div>
      <script>
           let fecha = new Date();
-          let cadena = `${fecha.getFullYear()}-${fecha.getMonth()+1}-${fecha.getDay()+1}`;
+          let cadena = `${fecha.getFullYear()}-${fecha.getMonth()+1}-${fecha.getDay()+2}`;
           document.querySelector('.time').innerText = cadena;
           let boton = document.querySelector('.toPost');
           boton.addEventListener('click', () => {
                let texto = document.querySelector('.userText').innerText;
-               
                let datePost;
-
                datePost =
                     `${fecha.getFullYear()}-${fecha.getMonth()+1}-${fecha.getDay()+1} ${fecha.getHours()}:${fecha.getMinutes()}:00`;
-
-
-
                document.getElementById('date').value = datePost;
                document.getElementById('text').value = texto;
                document.querySelector('.form').submit();
@@ -59,12 +55,28 @@
 
                let data = "<%= datos%>".split(",");
                let n = data.length;
-               for (let i = n - 1; i > 1; i -= 3) {
-
+               
+               for (let i = n - 1; i > 1; i -= 4) {
+                        
                     let userPost = document.createElement('div');
                     userPost.className = "userPost";
                     // creando contenedores para el texto y la informacion de usuario
                     let userInformation = document.querySelector('.userPostArea').cloneNode(true);
+                    userInformation.removeChild(userInformation.lastElementChild);
+                    let trash = document.createElement('i');
+                    // boton para eliminar
+                    trash.className = "fas fa-trash trash";
+                    let bottonTrash = document.createElement('button');
+                    bottonTrash.id = data[i-3];
+                    bottonTrash.appendChild(trash);
+                    userInformation.appendChild(bottonTrash);
+                    // evento para eliminar 
+                    bottonTrash.addEventListener('click', (e) => {
+                         
+                         document.getElementById('delete').value = e.target.parentElement.getAttribute('id');
+                         document.querySelector('.form').submit();
+
+                    });
                     // crear el post del usuario
                     let userText = document.createElement('div');
                     userText.className = 'userText';

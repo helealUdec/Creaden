@@ -111,6 +111,12 @@
 .userPublicationArea .userPost .userPostArea .userInformation {
   border: none;
 }
+.userPublicationArea .userPost .userPostArea button {
+  margin-left: 20px;
+  background: none;
+  border: none;
+  font-size: 20px;
+}
 .userPublicationArea .userPost .userText {
   padding: 0 20px;
 }

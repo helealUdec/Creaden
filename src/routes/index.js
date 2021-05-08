@@ -70,6 +70,7 @@ router.get('/userspace:userName', (req, res) => {
         let arreglo = [];
         for (let i = 0; i < n; i++) {
             arreglo[i] = [
+                data[i].id,
                 data[i].userName,
                 data[i].datePost,
                 data[i].textPost
@@ -85,16 +86,26 @@ router.post('/userspace:userName', (req, res) => {
     let userName = req.body.userName;
     let text = req.body.text;
     let date = req.body.date;
+    let deletePost = req.body.delete;
     if (text) {
         conection.query(`insert into ${userName}Data (userName, datePost, textPost) values ("${userName}", "${date}", "${text}")`, (error) => {
             if (error) console.log(error);
         });
     }
+
+    if(deletePost) {
+        conection.query(`delete from ${userName}Data where id = ${deletePost}`, (error) => {
+            if (error) console.log(error);
+        });
+    }
+
+
     conection.query(`select * from  ${userName}Data`, (error, data) => {
         let n = data.length;
         let arreglo = [];
         for (let i = 0; i < n; i++) {
             arreglo[i] = [
+                data[i].id,
                 data[i].userName,
                 data[i].datePost,
                 data[i].textPost
