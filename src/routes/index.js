@@ -22,7 +22,7 @@ router.post('/', (req, res) => {
             if (error) res.render('./index', { inicio: false, cancel: true });
             if (datos != null) {
                 if (datos[0].userPassword == info['userPassword']) {
-                    res.redirect('./userSpace?userName=' + `${info['userName']}`);
+                    res.redirect('/userSpace?userName=' + `${info['userName']}`);
                 } else {
                     res.render('./index', { inicio: false, cancel: true });
                 }

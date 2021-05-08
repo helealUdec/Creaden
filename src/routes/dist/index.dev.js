@@ -34,7 +34,7 @@ router.post('/', function (req, res) {
 
       if (datos != null) {
         if (datos[0].userPassword == info['userPassword']) {
-          res.redirect('./userSpace?userName=' + "".concat(info['userName']));
+          res.redirect('/userSpace?userName=' + "".concat(info['userName']));
         } else {
           res.render('./index', {
             inicio: false,
