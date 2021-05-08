@@ -68,6 +68,9 @@ router.post('/register', function (req, res) {
       });
     }
   });
+});
+router.get('/userSpace', function (req, res) {
+  res.render('userSpace');
 }); // espacio de cada usuario
 
 router.get('/userSpace:userName', function (req, res) {
