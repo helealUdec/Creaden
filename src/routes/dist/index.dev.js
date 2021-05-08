@@ -72,6 +72,7 @@ router.post('/register', function (req, res) {
 
 router.get('/userSpace', function (req, res) {
   var userName = req.query.userName;
+  console.log(userName);
   conection.query("select * from  ".concat(userName, "Data"), function (error, data) {
     var n = data.length;
     var arreglo = [];

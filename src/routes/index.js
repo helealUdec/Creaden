@@ -62,7 +62,8 @@ router.post('/register', (req, res) => {
 
 // espacio de cada usuario
 router.get('/userSpace', (req, res) => {
-    let userName =req.query.userName;
+    let userName = req.query.userName;
+    console.log(userName);
     conection.query(`select * from  ${userName}Data`, (error, data) => {
         let n = data.length;
         let arreglo = [];
