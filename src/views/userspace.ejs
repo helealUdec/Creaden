@@ -1,24 +1,85 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
      <%- include('partials/head')%>
+     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css"
+          integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
      <link rel="stylesheet" href="/Css/userSpace.css">
-     <title>Document</title>
+     <title>Inicio</title>
 </head>
+
 <body>
      <div class="userSpaceConteiner">
           <div class="userPostArea">
-               <img src="/Img/userImage.jfif" alt="" class="userImage">
-               <span class="time">11:11:11</span>
-               <p class="userName">User Default</p>
+               <img src="https://picsum.photos/200/300" alt="" class="userImage">
+               <div class="userInformation">
+                    <span class="time">11:11:11</span>
+                    <p class="userName"><%= userName%></p>
+               </div>
           </div>
           <div class="userTextArea">
-               <div  contenteditable="true"  class="userText"></div>
-               <button class="toPost">Enviar</button>
+               <div contenteditable="true" class="userText"></div>
+               <form action="" method="POST" class="form">
+                    <input type="text" name="userName" value="<%= userName%>">
+                    <input type="text" id="text" name="text" value="">
+                    <input type="text" id="date" name="date" value="">
+               </form>
+               <button type="submit" class="toPost"><i class="fas fa-paper-plane "></i></button>
+
           </div>
           <div class="userPublicationArea">
-               <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae repudiandae officiis exercitationem consequatur deleniti eius iste reiciendis magni dicta nisi soluta voluptatem, consequuntur quae expedita incidunt earum quo ut perspiciatis.</p>
+
           </div>
      </div>
+     <script>
+         
+          let boton = document.querySelector('.toPost');
+          boton.addEventListener('click', () => {
+               let texto = document.querySelector('.userText').innerText;
+               let fecha = new Date();
+               let datePost;
+
+               datePost =
+                    `${fecha.getFullYear()}-${fecha.getMonth()+1}-${fecha.getDay()+1} ${fecha.getHours()}:${fecha.getMinutes()}:00`;
+
+
+
+               document.getElementById('date').value = datePost;
+               document.getElementById('text').value = texto;
+               document.querySelector('.form').submit();
+          });
+
+          try {
+
+
+
+               let data = "<%= datos%>".split(",");
+               let n = data.length;
+               for (let i = n - 1; i > 1; i -= 3) {
+
+                    let userPost = document.createElement('div');
+                    userPost.className = "userPost";
+                    // creando contenedores para el texto y la informacion de usuario
+                    let userInformation = document.querySelector('.userPostArea').cloneNode(true);
+                    // crear el post del usuario
+                    let userText = document.createElement('div');
+                    userText.className = 'userText';
+                    let text = document.createElement('p');
+                    text.innerText = data[i];
+                    userText.appendChild(text);
+                    userPost.appendChild(userInformation);
+                    userPost.appendChild(userText);
+
+                    // insertandolo en el area de publicaciones
+                    document.querySelector('.userPublicationArea').appendChild(userPost);
+
+
+               }
+          } catch (error) {
+               console.log(error);
+          }
+     </script>
 </body>
+
 </html>

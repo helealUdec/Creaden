@@ -4,7 +4,7 @@ const http = require('http');
 const url = require('url');
 const fs = require('fs');
 const querystring = require('querystring');
-
+const conection = require('../modules/conection.js');
 
 
 const router = express.Router();
@@ -17,40 +17,32 @@ router.get('/', (req, res) => {
 
 router.post('/', (req, res) => {
     let info = req.body;
-    const conection = require('../modules/conection.js');
     conection.query(`select * from userLogin where userName = '${info['userName']}'`, (error, datos) => {
         try {
             if (error) res.render('./index', { inicio: false, cancel: true });
             if (datos != null) {
                 if (datos[0].userPassword == info['userPassword']) {
-                    res.render('./index', { inicio: true, cancel: false });
+                    res.redirect('./userSpace?userName=' + `${info['userName']}`);
                 } else {
                     res.render('./index', { inicio: false, cancel: true });
                 }
-
             }
         } catch (errores) {
-            res.render('./index', { inicio: false, cancel: true });
-        }
-
-
-});
-
-
-
+            console.log(errores);
+        res.render('./index', { inicio: false, cancel: true });
+    }
 
 });
 
+});
 
 // registro de las personas
 router.get('/register', (req, res) => {
     res.render('register', { registro: false });
 });
 
-
 router.post('/register', (req, res) => {
     let info = req.body;
-    const conection = require('../modules/conection.js');
     conection.query('select * from userLogin', (err, datos) => {
         if (!comprobarExiste(datos, info)) {
             conection.query(`insert into userLogin (userName, userPassword) values ('${info['userName']}', '${info['userPassword']}')`);
@@ -65,12 +57,54 @@ router.post('/register', (req, res) => {
         }
     });
 
+
 });
 
 // espacio de cada usuario
 router.get('/userSpace', (req, res) => {
-    res.render('userSpace');
+    let userName =req.query.userName;
+    conection.query(`select * from  ${userName}Data`, (error, data) => {
+        let n = data.length;
+        let arreglo = [];
+        for (let i = 0; i < n; i++) {
+            arreglo[i] = [
+                data[i].userName,
+                data[i].datePost,
+                data[i].textPost
+            ];
+        }
+
+        res.render('./userSpace', { datos: arreglo, userName: userName });
+    });
+
 });
+
+router.post('/userSpace', (req, res) => {
+    let userName = req.body.userName;
+    let text = req.body.text;
+    let date = req.body.date;
+    if (text) {
+        conection.query(`insert into ${userName}Data (userName, datePost, textPost) values ("${userName}", "${date}", "${text}")`, (error) => {
+            if (error) console.log(error);
+        });
+    }
+    conection.query(`select * from  ${userName}Data`, (error, data) => {
+        let n = data.length;
+        let arreglo = [];
+        for (let i = 0; i < n; i++) {
+            arreglo[i] = [
+                data[i].userName,
+                data[i].datePost,
+                data[i].textPost
+            ];
+        }
+
+        res.render('./userSpace', { datos: arreglo , userName: userName });
+    });
+
+});
+
+
 
 module.exports = router;
 

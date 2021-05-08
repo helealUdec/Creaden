@@ -10,8 +10,13 @@ $height: 600px;
      height: 90%;
      border-radius: 15px;
      box-shadow: 5px 5px 2px 2px rgba($color: #eee, $alpha: 0.3);
+     
 }
-
+.userImage {
+     width: 80px;
+     height: 80px;
+     border-radius: 80px;
+}
 .userPostArea {
      padding: 20px;
      width: 100%;
@@ -19,42 +24,65 @@ $height: 600px;
      flex-direction: row wrap;
      align-items: center;
      border-bottom: 1px solid rgba($color: #000000, $alpha: 0.3);
-
+ 
+     .userInformation {
+          margin-top: 20px;
+          margin-left: 20px;
+          
+          .time {
+     
+          }
+          
+          .userName {
+          
+          }
+     }
 }
 
-.userImage {
-     width: 80px;
-     height: 80px;
-     border-radius: 80px;
-}
-
-.time {
-
-}
-
-.userName {
-
-}
 
 .userTextArea {
+
      padding: 20px;
      width: 100%;
-     background-color: #eee;
+     background-color: #fff;
      display: flex;
      flex-flow: row nowrap;
      border-bottom: 1px solid rgba($color: #000000, $alpha: 0.3);
      align-items: flex-end;
-     .toPost {
-          height: 40px;
+
+          .toPost {
+               height: 40px;
+               width: 60px;
+               background: none;
+               border: none;
+               font-size: 40px;
+               
+               &:hover {
+                    color: #aaa;
+                    cursor: pointer;
+               }
           
-     }
- }
+               &:active {
+                    color: #eee;
+               }
+          }
+
+         form {
+              input[type="text"] {
+                   display: none;
+              }
+         }
+     
+ } 
+
+ 
 
 .userTextArea .userText {
      width: 90%;
      border-bottom: 1px solid black;
      cursor: text;
      outline: none;
+     margin-left: 10px;
 }
 
 .userTextArea .userText:empty::before {
@@ -64,7 +92,55 @@ $height: 600px;
 
 
 .userPublicationArea {
-     flex-grow: 1;
-     background-color: #aaa;
-     height: 300px;
+     width: 100%;
+     background-color: #fff;
+     height: 70%;
+     border-radius:  0  0 15px 15px;
+     overflow: scroll;
+     overflow-x: hidden;
+     border: none;
+     &::-webkit-scrollbar {
+          width: 10px;     /* Tamaño del scroll en vertical */
+          border-bottom-right-radius: 15px;
+          background-color: #fff;
+      }
+
+      &::-webkit-scrollbar-thumb {
+           border-radius: 1em;
+           background-color: rgba($color: #000000, $alpha: 0.2);
+
+           &:hover {
+                background-color: rgba($color: #000000, $alpha: 0.3);
+           }
+
+      }
+      
+      .userPost {
+          width: 100%;
+          
+          border-bottom: 1px solid rgba($color: #000000, $alpha: 0.3);
+
+          .userPostArea { 
+               width: 100%;
+               border: none;
+               padding-bottom: 0;
+               .userImage {
+                    border: none;
+               }
+     
+               .userInformation {
+                    border: none;
+               }
+          }
+          
+
+          .userText {
+              padding: 0 20px;
+          }
+
+
+     }
+
+     
+     
 }
