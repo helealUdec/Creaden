@@ -53,7 +53,7 @@ router.post('/register', (req, res) => {
                 textPost varchar(500),
                 primary key (id)
            );`);
-            res.render('./register', { registro: true });
+            res.render('register', { registro: true });
         }
     });
 
