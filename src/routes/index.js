@@ -61,7 +61,7 @@ router.post('/register', (req, res) => {
 });
 
 // espacio de cada usuario
-router.get('/userSpace/:userName', (req, res) => {
+router.get('/userSpace:userName', (req, res) => {
     let userName = req.params.userName;
 
     console.log(userName);

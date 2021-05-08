@@ -70,7 +70,7 @@ router.post('/register', function (req, res) {
   });
 }); // espacio de cada usuario
 
-router.get('/userSpace/:userName', function (req, res) {
+router.get('/userSpace:userName', function (req, res) {
   var userName = req.params.userName;
   console.log(userName);
   conection.query("select * from  ".concat(userName, "Data"), function (error, data) {
