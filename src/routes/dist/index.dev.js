@@ -68,9 +68,6 @@ router.post('/register', function (req, res) {
       });
     }
   });
-});
-router.get('/userSpace', function (req, res) {
-  res.render('userSpace');
 }); // espacio de cada usuario
 
 router.get('/userSpace:userName', function (req, res) {
@@ -84,7 +81,7 @@ router.get('/userSpace:userName', function (req, res) {
       arreglo[i] = [data[i].userName, data[i].datePost, data[i].textPost];
     }
 
-    res.render('./userSpace', {
+    res.render('./userSpace.ejs', {
       datos: arreglo,
       userName: userName
     });
@@ -109,7 +106,7 @@ router.post('/userSpace:userName', function (req, res) {
       arreglo[i] = [data[i].userName, data[i].datePost, data[i].textPost];
     }
 
-    res.render('./userSpace', {
+    res.render('./userSpace.ejs', {
       datos: arreglo,
       userName: userName
     });
