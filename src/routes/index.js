@@ -22,7 +22,7 @@ router.post('/', (req, res) => {
             if (error) res.render('./index', { inicio: false, cancel: true });
             if (datos != null) {
                 if (datos[0].userPassword == info['userPassword']) {
-                    res.redirect('/userSpace?userName=' + `${info['userName']}`);
+                    res.redirect('./userSpace/' + `${info['userName']}`);
                 } else {
                     res.render('./index', { inicio: false, cancel: true });
                 }
@@ -38,7 +38,7 @@ router.post('/', (req, res) => {
 
 // registro de las personas
 router.get('/register', (req, res) => {
-    res.render('register', { registro: false });
+    res.render('./register', { registro: false });
 });
 
 router.post('/register', (req, res) => {
@@ -61,8 +61,9 @@ router.post('/register', (req, res) => {
 });
 
 // espacio de cada usuario
-router.get('/userSpace', (req, res) => {
-    let userName = req.query.userName;
+router.get('/userSpace/:userName', (req, res) => {
+    let userName = req.params.userName;
+
     console.log(userName);
     conection.query(`select * from  ${userName}Data`, (error, data) => {
         let n = data.length;
@@ -75,7 +76,7 @@ router.get('/userSpace', (req, res) => {
             ];
         }
 
-        res.render('userSpace', { datos: arreglo, userName: userName });
+        res.render('./userSpace', { datos: arreglo, userName: userName });
     });
 
 });
