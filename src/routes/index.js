@@ -51,6 +51,7 @@ router.post('/register', (req, res) => {
                 userName varchar(30),
                 datePost datetime,
                 textPost varchar(500),
+                imageUrl varchar(500), 
                 primary key (id)
            );`);
             res.render('./register', { registro: true });
@@ -65,6 +66,7 @@ router.get('/userspace:userName', (req, res) => {
     let userName = req.params.userName;
 
     console.log(userName);
+    // envio las publicaciones del usuario
     conection.query(`select * from  ${userName}Data`, (error, data) => {
         let n = data.length;
         let arreglo = [];

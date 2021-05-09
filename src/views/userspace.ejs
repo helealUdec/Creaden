@@ -26,6 +26,8 @@
                     <input type="text" id="text" name="text" value="">
                     <input type="text" id="date" name="date" value="">
                     <input type="text" id="delete" name="delete" value="">
+                    <label for="image">Subir imagen</label>
+                    <input type="file" name="image" id="image">
                </form>
                <button type="submit" class="toPost"><i class="fas fa-paper-plane "></i></button>
 
@@ -36,14 +38,14 @@
      </div>
      <script>
           let fecha = new Date();
-          let cadena = `${fecha.getFullYear()}-${fecha.getMonth()+1}-${fecha.getDay()+2}`;
+          let cadena = `${fecha.getFullYear()}-${fecha.getMonth()+1}-${fecha.getDate()}`;
           document.querySelector('.time').innerText = cadena;
           let boton = document.querySelector('.toPost');
           boton.addEventListener('click', () => {
                let texto = document.querySelector('.userText').innerText;
                let datePost;
                datePost =
-                    `${fecha.getFullYear()}-${fecha.getMonth()+1}-${fecha.getDay()+1} ${fecha.getHours()}:${fecha.getMinutes()}:00`;
+                    `${fecha.getFullYear()}-${fecha.getMonth()+1}-${fecha.getDate()} ${fecha.getHours()}:${fecha.getMinutes()}:00`;
                document.getElementById('date').value = datePost;
                document.getElementById('text').value = texto;
                document.querySelector('.form').submit();

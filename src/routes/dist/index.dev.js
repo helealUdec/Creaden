@@ -62,7 +62,7 @@ router.post('/register', function (req, res) {
   conection.query('select * from userLogin', function (err, datos) {
     if (!comprobarExiste(datos, info)) {
       conection.query("insert into userLogin (userName, userPassword) values ('".concat(info['userName'], "', '").concat(info['userPassword'], "')"));
-      conection.query("create table ".concat(info['userName'], "Data (\n                id int auto_increment,\n                userName varchar(30),\n                datePost datetime,\n                textPost varchar(500),\n                primary key (id)\n           );"));
+      conection.query("create table ".concat(info['userName'], "Data (\n                id int auto_increment,\n                userName varchar(30),\n                datePost datetime,\n                textPost varchar(500),\n                imageUrl varchar(500), \n                primary key (id)\n           );"));
       res.render('./register', {
         registro: true
       });
@@ -72,7 +72,8 @@ router.post('/register', function (req, res) {
 
 router.get('/userspace:userName', function (req, res) {
   var userName = req.params.userName;
-  console.log(userName);
+  console.log(userName); // envio las publicaciones del usuario
+
   conection.query("select * from  ".concat(userName, "Data"), function (error, data) {
     var n = data.length;
     var arreglo = [];

@@ -40,6 +40,10 @@ $height: 600px;
      }
      .salir {
           font-size: 40px;
+          color: #52057b;
+          &:hover {
+               color: red;
+          }
      }
 }
 
@@ -60,20 +64,46 @@ $height: 600px;
                background: none;
                border: none;
                font-size: 40px;
-               
+               color: #52057b;
                &:hover {
-                    color: #aaa;
+                    color: #000;
                     cursor: pointer;
                }
           
                &:active {
-                    color: #eee;
+                    color: #888;
                }
           }
 
          form {
               input[type="text"] {
                    display: none;
+              } 
+
+              input[type="file"] {
+                   width: 0.1px;
+                   height: 0.1px;
+                   opacity: 0;
+                    overflow: hidden;
+                    position: absolute;
+                    z-index: -1;
+                   
+              }
+
+              label[for="image"] {
+               margin: 0 30px 0 20px;
+                   padding: 10px;
+                   cursor: pointer;
+                   text-transform: uppercase;
+                   color: #fff;
+                   display: inline-block;
+                   background-color: #52057b;
+                   border-radius: 10px;
+
+                   &:hover {
+                    background-color: #000;
+
+                   }
               }
          }
      
@@ -141,6 +171,11 @@ $height: 600px;
                     background: none;
                     border: none;
                     font-size: 20px;
+                    color: #52057b;
+                    i:hover {
+                         color: #000;
+                         cursor: pointer;
+                    }
                }
           }
           
