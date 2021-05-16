@@ -14,14 +14,14 @@
           <div class="userPostArea">
                <img src="https://picsum.photos/200/300" alt="" class="userImage">
                <div class="userInformation">
-                    <span class="time">11:11:11</span>
+                    <span class="time"></span>
                     <p class="userName"><%= userName%></p>
                </div>
                <a href="../" class=""><i class="fas fa-power-off salir"></i></a>
           </div>
           <div class="userTextArea">
                <div contenteditable="true" class="userText"></div>
-               <form action="" method="POST" class="form">
+               <form action="" method="POST" class="form" enctype='multipart/form-data'> 
                     <input type="text" name="userName" value="<%= userName%>">
                     <input type="text" id="text" name="text" value="">
                     <input type="text" id="date" name="date" value="">
@@ -30,17 +30,24 @@
                     <input type="file" name="image" id="image">
                </form>
                <button type="submit" class="toPost"><i class="fas fa-paper-plane "></i></button>
-
+               <img src="" alt="" class="imageToPost" >
           </div>
           <div class="userPublicationArea">
 
           </div>
      </div>
-     <script>
+     <script >
           let fecha = new Date();
           let cadena = `${fecha.getFullYear()}-${fecha.getMonth()+1}-${fecha.getDate()}`;
           document.querySelector('.time').innerText = cadena;
           let boton = document.querySelector('.toPost');
+          let imageUpload = document.getElementById('image');
+          imageUpload.addEventListener('change', () => {
+               console.log(imageUpload.value);
+               let imageToPost = document.querySelector('.imageToPost');
+               imageToPost.setAttribute('src', imageUpload.value);
+               
+          });
           boton.addEventListener('click', () => {
                let texto = document.querySelector('.userText').innerText;
                let datePost;

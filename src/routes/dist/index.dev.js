@@ -14,7 +14,16 @@ var querystring = require('querystring');
 
 var conection = require('../modules/conection.js');
 
-var router = express.Router(); //routes
+var router = express.Router();
+
+var body_parser = require('body-parser');
+
+router.use(body_parser()); //Express 4
+
+var multipart = require('connect-multiparty');
+
+router.use(multipart()); //Express 4
+//routes
 //  inicio de sesion
 
 router.get('/', function (req, res) {
@@ -93,6 +102,8 @@ router.post('/userspace:userName', function (req, res) {
   var text = req.body.text;
   var date = req.body.date;
   var deletePost = req.body["delete"];
+  var path = req.files;
+  console.log(path);
 
   if (text) {
     conection.query("insert into ".concat(userName, "Data (userName, datePost, textPost) values (\"").concat(userName, "\", \"").concat(date, "\", \"").concat(text, "\")"), function (error) {

@@ -8,6 +8,11 @@ const conection = require('../modules/conection.js');
 
 
 const router = express.Router();
+
+const  body_parser   = require('body-parser');
+router.use(body_parser()); //Express 4
+const multipart = require('connect-multiparty');
+router.use(multipart()); //Express 4
 //routes
 
 //  inicio de sesion
@@ -77,18 +82,22 @@ router.get('/userspace:userName', (req, res) => {
                 data[i].datePost,
                 data[i].textPost
             ];
-        }
+        } 
 
         res.render('userspace.ejs', { datos: arreglo, userName: userName });
     });
 
 });
 
+
+
 router.post('/userspace:userName', (req, res) => {
     let userName = req.body.userName;
     let text = req.body.text;
     let date = req.body.date;
     let deletePost = req.body.delete;
+    let path = req.files;
+    console.log(path);
     if (text) {
         conection.query(`insert into ${userName}Data (userName, datePost, textPost) values ("${userName}", "${date}", "${text}")`, (error) => {
             if (error) console.log(error);
@@ -116,7 +125,6 @@ router.post('/userspace:userName', (req, res) => {
 
         res.render('userspace.ejs', { datos: arreglo , userName: userName });
     });
-
 });
 
 

@@ -3,7 +3,9 @@ const morgan = require('morgan');
 const path = require('path');
 const app = express();
 const bodyparser = require('body-parser');
+const fileUpload = require('express-fileupload');
 
+app.use(fileUpload());
 app.use(bodyparser.urlencoded({ extended: true }))
 app.use(bodyparser.json());
 app.set('port', process.env.PORT || 4000);

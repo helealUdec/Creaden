@@ -10,6 +10,9 @@ var app = express();
 
 var bodyparser = require('body-parser');
 
+var fileUpload = require('express-fileupload');
+
+app.use(fileUpload());
 app.use(bodyparser.urlencoded({
   extended: true
 }));

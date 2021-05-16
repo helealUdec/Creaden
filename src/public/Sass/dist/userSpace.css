@@ -100,6 +100,10 @@
   content: "Escribe aquí...";
 }
 
+.imageToPost {
+  display: none;
+}
+
 .userPublicationArea {
   width: 100%;
   background-color: #fff;
