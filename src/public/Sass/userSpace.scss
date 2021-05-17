@@ -10,13 +10,15 @@ $height: 600px;
      height: 90%;
      border-radius: 15px;
      box-shadow: 5px 5px 2px 2px rgba($color: #eee, $alpha: 0.3);
-     
+
 }
+
 .userImage {
      width: 80px;
      height: 80px;
      border-radius: 80px;
 }
+
 .userPostArea {
      padding: 20px;
      width: 100%;
@@ -24,23 +26,21 @@ $height: 600px;
      flex-direction: row wrap;
      align-items: center;
      border-bottom: 1px solid rgba($color: #000000, $alpha: 0.3);
- 
+
      .userInformation {
           margin-top: 20px;
           margin-left: 20px;
           width: 80%;
-          
-          .time {
-     
-          }
-          
-          .userName {
-          
-          }
+
+          .time {}
+
+          .userName {}
      }
+
      .salir {
           font-size: 40px;
           color: #52057b;
+
           &:hover {
                color: red;
           }
@@ -49,121 +49,148 @@ $height: 600px;
 
 
 .userTextArea {
-
      padding: 20px;
      width: 100%;
      background-color: #fff;
      display: flex;
-     flex-flow: row nowrap;
+     flex-flow: row wrap;
      border-bottom: 1px solid rgba($color: #000000, $alpha: 0.3);
      align-items: flex-end;
 
+     .contenedorForm {
+          display: flex;
+          width: 100%;
+          flex-flow: row nowrap;
+          
+          .userText {
+               flex-grow: 7;
+               border-bottom: 1px solid black;
+               cursor: text;
+               outline: none;
+               margin-left: 10px;
+
+               &:empty::before {
+                    position: absolute;
+                    content: "Escribe aquí...";
+               }
+          }
+
+
+
           .toPost {
+               flex-grow: 0;
                height: 40px;
                width: 60px;
                background: none;
                border: none;
                font-size: 40px;
                color: #52057b;
+
                &:hover {
                     color: #000;
                     cursor: pointer;
                }
-          
+
                &:active {
                     color: #888;
                }
           }
 
-         form {
-              input[type="text"] {
-               display: none;
-              } 
+          form {
+               flex-grow: 0;
+               input[type="text"] {
+                    display: none;
+               }
 
-              input[type="file"] {
-                   width: 0.1px;
-                   height: 0.1px;
-                   opacity: 0;
+               input[type="file"] {
+                    width: 0.1px;
+                    height: 0.1px;
+                    opacity: 0;
                     overflow: hidden;
                     position: absolute;
                     z-index: -1;
-                   
-              }
 
-              label[for="image"] {
-               margin: 0 30px 0 20px;
-                   padding: 10px;
-                   cursor: pointer;
-                   text-transform: uppercase;
-                   color: #fff;
-                   display: inline-block;
-                   background-color: #52057b;
-                   border-radius: 10px;
+               }
 
-                   &:hover {
-                    background-color: #000;
+               label[for="image"] {
+                    margin: 0 30px 0 20px;
+                    padding: 10px;
+                    cursor: pointer;
+                    text-transform: uppercase;
+                    color: #fff;
+                    display: inline-block;
+                    background-color: #52057b;
+                    border-radius: 10px;
 
-                   }
-              }
-         }
-     
- } 
+                    &:hover {
+                         background-color: #000;
 
- 
+                    }
+               }
+          }
+     }
 
-.userTextArea .userText {
-     width: 90%;
-     border-bottom: 1px solid black;
-     cursor: text;
-     outline: none;
-     margin-left: 10px;
 }
 
-.userTextArea .userText:empty::before {
-     position: absolute;
-     content: "Escribe aquí...";
-}
+
+
+
 
 .imageToPost {
+     flex-basis: 1;
      display: none;
+     border: solid 1px #eee;
+     border-radius: 15px;
+     margin: 20px 0 10px 0;
+     width: 250px;
+     height: 250px;
+
+     &:hover {
+          filter: grayscale(0.5);
+          cursor: pointer;
+     }
 }
+
 .userPublicationArea {
      width: 100%;
      background-color: #fff;
      height: 70%;
-     border-radius:  0  0 15px 15px;
+     border-radius: 0 0 15px 15px;
      overflow: scroll;
      overflow-x: hidden;
      border: none;
+
      &::-webkit-scrollbar {
-          width: 10px;     /* Tamaño del scroll en vertical */
+          width: 10px;
+          /* Tamaño del scroll en vertical */
           border-bottom-right-radius: 15px;
           background-color: #fff;
-      }
+     }
 
-      &::-webkit-scrollbar-thumb {
-           border-radius: 1em;
-           background-color: rgba($color: #000000, $alpha: 0.2);
+     &::-webkit-scrollbar-thumb {
+          border-radius: 1em;
+          background-color: rgba($color: #000000, $alpha: 0.2);
 
-           &:hover {
-                background-color: rgba($color: #000000, $alpha: 0.3);
-           }
+          &:hover {
+               background-color: rgba($color: #000000, $alpha: 0.3);
+          }
 
-      }
-      
-      .userPost {
+     }
+
+     .userPost {
           width: 100%;
-          
+
           border-bottom: 1px solid rgba($color: #000000, $alpha: 0.3);
 
-          .userPostArea { 
+          .userPostArea {
                width: 100%;
                border: none;
                padding-bottom: 0;
+
                .userImage {
                     border: none;
                }
-     
+
                .userInformation {
                     border: none;
                }
@@ -174,21 +201,32 @@ $height: 600px;
                     border: none;
                     font-size: 20px;
                     color: #52057b;
+
                     i:hover {
                          color: #000;
                          cursor: pointer;
                     }
                }
-          }
-          
 
-          .userText {
-              padding: 0 20px;
+              
           }
+
+
+          
 
 
      }
 
-     
-     
+
+
 }
+
+
+.userText {
+     margin-left: 20px;
+
+      img {
+           width: 250px;
+           height: 250px;
+      }
+ }

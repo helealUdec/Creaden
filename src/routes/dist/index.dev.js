@@ -1,29 +1,34 @@
 "use strict";
 
-var Swal = require('sweetalert2');
-
 var express = require('express');
-
-var http = require('http');
-
-var url = require('url');
-
-var fs = require('fs');
-
-var querystring = require('querystring');
 
 var conection = require('../modules/conection.js');
 
+var path = require('path');
+
 var router = express.Router();
+router.use(express.json());
+router.use(express.urlencoded({
+  extended: true
+})); //// multerrr
 
-var body_parser = require('body-parser');
+var multer = require('multer');
 
-router.use(body_parser()); //Express 4
+var mimeTypes = require('mime-types');
 
-var multipart = require('connect-multiparty');
-
-router.use(multipart()); //Express 4
-//routes
+var ruta = path.join(__dirname, "public/files");
+var storage = multer.diskStorage({
+  destination: function destination(req, file, cb) {
+    cb(null, './src/public/files');
+  },
+  filename: function filename(req, file, cb) {
+    var fecha = new Date();
+    cb(null, req.body.userName + '-' + fecha.getDate() + fecha.getMonth() + fecha.getMinutes() + fecha.getMilliseconds() + '.' + mimeTypes.extension(file.mimetype));
+  }
+});
+var upload = multer({
+  storage: storage
+}); //routes
 //  inicio de sesion
 
 router.get('/', function (req, res) {
@@ -80,15 +85,16 @@ router.post('/register', function (req, res) {
 }); // espacio de cada usuario
 
 router.get('/userspace:userName', function (req, res) {
-  var userName = req.params.userName;
-  console.log(userName); // envio las publicaciones del usuario
+  var userName = req.params.userName; // envio las publicaciones del usuario
 
   conection.query("select * from  ".concat(userName, "Data"), function (error, data) {
     var n = data.length;
     var arreglo = [];
 
     for (var i = 0; i < n; i++) {
-      arreglo[i] = [data[i].id, data[i].userName, data[i].datePost, data[i].textPost];
+      var imageUrl = void 0;
+      if (data[i].imageUrl == null) imageUrl = "vacio";else imageUrl = data[i].imageUrl;
+      arreglo[i] = [data[i].id, data[i].userName, data[i].datePost, data[i].textPost, imageUrl];
     }
 
     res.render('userspace.ejs', {
@@ -97,16 +103,24 @@ router.get('/userspace:userName', function (req, res) {
     });
   });
 });
-router.post('/userspace:userName', function (req, res) {
+router.post('/userspace:userName', upload.any(), function (req, res) {
   var userName = req.body.userName;
   var text = req.body.text;
   var date = req.body.date;
   var deletePost = req.body["delete"];
-  var path = req.files;
-  console.log(path);
+  var imagePost;
+  if (req.files[0]) imagePost = req.files[0].filename;
 
-  if (text) {
+  if (text && imagePost) {
+    conection.query("insert into ".concat(userName, "Data (userName, datePost, textPost, imageUrl) values (\"").concat(userName, "\", \"").concat(date, "\", \"").concat(text, "\", \"").concat(imagePost, "\")"), function (error) {
+      if (error) console.log(error);
+    });
+  } else if (text) {
     conection.query("insert into ".concat(userName, "Data (userName, datePost, textPost) values (\"").concat(userName, "\", \"").concat(date, "\", \"").concat(text, "\")"), function (error) {
+      if (error) console.log(error);
+    });
+  } else if (imagePost) {
+    conection.query("insert into ".concat(userName, "Data (userName, datePost, imageUrl) values (\"").concat(userName, "\", \"").concat(date, "\", \"").concat(imagePost, "\")"), function (error) {
       if (error) console.log(error);
     });
   }
@@ -122,7 +136,11 @@ router.post('/userspace:userName', function (req, res) {
     var arreglo = [];
 
     for (var i = 0; i < n; i++) {
-      arreglo[i] = [data[i].id, data[i].userName, data[i].datePost, data[i].textPost];
+      var imageUrl = void 0;
+      var texto = void 0;
+      if (data[i].imageUrl == null) imageUrl = "vacio12Se";else imageUrl = data[i].imageUrl;
+      if (data[i].textPost == null) texto = "vacio12Se";else texto = data[i].textPost;
+      arreglo[i] = [data[i].id, data[i].userName, data[i].datePost, texto, imageUrl];
     }
 
     res.render('userspace.ejs', {

@@ -67,15 +67,44 @@
   display: flex;
   -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
-      -ms-flex-flow: row nowrap;
-          flex-flow: row nowrap;
+      -ms-flex-flow: row wrap;
+          flex-flow: row wrap;
   border-bottom: 1px solid rgba(0, 0, 0, 0.3);
   -webkit-box-align: end;
       -ms-flex-align: end;
           align-items: flex-end;
 }
 
-.userTextArea .toPost {
+.userTextArea .contenedorForm {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row nowrap;
+          flex-flow: row nowrap;
+}
+
+.userTextArea .contenedorForm .userText {
+  -webkit-box-flex: 7;
+      -ms-flex-positive: 7;
+          flex-grow: 7;
+  border-bottom: 1px solid black;
+  cursor: text;
+  outline: none;
+  margin-left: 10px;
+}
+
+.userTextArea .contenedorForm .userText:empty::before {
+  position: absolute;
+  content: "Escribe aquí...";
+}
+
+.userTextArea .contenedorForm .toPost {
+  -webkit-box-flex: 0;
+      -ms-flex-positive: 0;
+          flex-grow: 0;
   height: 40px;
   width: 60px;
   background: none;
@@ -84,20 +113,26 @@
   color: #52057b;
 }
 
-.userTextArea .toPost:hover {
+.userTextArea .contenedorForm .toPost:hover {
   color: #000;
   cursor: pointer;
 }
 
-.userTextArea .toPost:active {
+.userTextArea .contenedorForm .toPost:active {
   color: #888;
 }
 
-.userTextArea form input[type="text"] {
+.userTextArea .contenedorForm form {
+  -webkit-box-flex: 0;
+      -ms-flex-positive: 0;
+          flex-grow: 0;
+}
+
+.userTextArea .contenedorForm form input[type="text"] {
   display: none;
 }
 
-.userTextArea form input[type="file"] {
+.userTextArea .contenedorForm form input[type="file"] {
   width: 0.1px;
   height: 0.1px;
   opacity: 0;
@@ -106,7 +141,7 @@
   z-index: -1;
 }
 
-.userTextArea form label[for="image"] {
+.userTextArea .contenedorForm form label[for="image"] {
   margin: 0 30px 0 20px;
   padding: 10px;
   cursor: pointer;
@@ -117,32 +152,32 @@
   border-radius: 10px;
 }
 
-.userTextArea form label[for="image"]:hover {
+.userTextArea .contenedorForm form label[for="image"]:hover {
   background-color: #000;
 }
 
-.userTextArea .userText {
-  width: 90%;
-  border-bottom: 1px solid black;
-  cursor: text;
-  outline: none;
-  margin-left: 10px;
-}
-
-.userTextArea .userText:empty::before {
-  position: absolute;
-  content: "Escribe aquí...";
-}
-
 .imageToPost {
+  -ms-flex-preferred-size: 1;
+      flex-basis: 1;
   display: none;
+  border: solid 1px #eee;
+  border-radius: 15px;
+  margin: 20px 0 10px 0;
+  width: 250px;
+  height: 250px;
+}
+
+.imageToPost:hover {
+  -webkit-filter: grayscale(0.5);
+          filter: grayscale(0.5);
+  cursor: pointer;
 }
 
 .userPublicationArea {
   width: 100%;
   background-color: #fff;
   height: 70%;
-  border-radius: 0  0 15px 15px;
+  border-radius: 0 0 15px 15px;
   overflow: scroll;
   overflow-x: hidden;
   border: none;
@@ -196,7 +231,12 @@
   cursor: pointer;
 }
 
-.userPublicationArea .userPost .userText {
-  padding: 0 20px;
+.userText {
+  margin-left: 20px;
+}
+
+.userText img {
+  width: 250px;
+  height: 250px;
 }
 /*# sourceMappingURL=userSpace.css.map */
