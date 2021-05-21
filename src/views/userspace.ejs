@@ -58,9 +58,10 @@
           // acomodar la informacion del usuario
           try {
 
-               let data = "<%= datos%>".split(",");
-               let n = data.length;
-
+                let data = "<%= datos%>".split('des4523,');
+                let n = data.length;
+               data[n - 1] = data[n - 1].substring(0, (data[n - 1].length - 7));
+               console.log(data[n - 1])
                for (let i = n - 2; i > 1; i -= 5) {
 
                     let userPost = document.createElement('div');
@@ -88,14 +89,14 @@
                     let text = document.createElement('p');
                     let image = document.createElement('img');
                     if (data[i] != "vacio12Se") text.innerText = data[i];
-                    
+                    userText.appendChild(text);
                     if (!data[i +1].includes('vacio12Se')) {
                          image.setAttribute('src', `/files/${data[i + 1]}`);
                          image.className = 'imgPost';
                          userText.appendChild(image);
                     } 
 
-                    userText.appendChild(text);
+                   
                     
                     userPost.appendChild(userInformation);
                     userPost.appendChild(userText);

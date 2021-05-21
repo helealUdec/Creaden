@@ -93,8 +93,14 @@ router.get('/userspace:userName', function (req, res) {
 
     for (var i = 0; i < n; i++) {
       var imageUrl = void 0;
-      if (data[i].imageUrl == null) imageUrl = "vacio";else imageUrl = data[i].imageUrl;
+      if (data[i].imageUrl == null) imageUrl = "vacio12Se";else imageUrl = data[i].imageUrl;
       arreglo[i] = [data[i].id, data[i].userName, data[i].datePost, data[i].textPost, imageUrl];
+    }
+
+    for (var _i = 0; _i < arreglo.length; _i++) {
+      for (var j = 0; j < arreglo[_i].length; j++) {
+        arreglo[_i][j] += "des4523";
+      }
     }
 
     res.render('userspace.ejs', {
@@ -141,6 +147,12 @@ router.post('/userspace:userName', upload.any(), function (req, res) {
       if (data[i].imageUrl == null) imageUrl = "vacio12Se";else imageUrl = data[i].imageUrl;
       if (data[i].textPost == null) texto = "vacio12Se";else texto = data[i].textPost;
       arreglo[i] = [data[i].id, data[i].userName, data[i].datePost, texto, imageUrl];
+    }
+
+    for (var _i2 = 0; _i2 < arreglo.length; _i2++) {
+      for (var j = 0; j < arreglo[_i2].length; j++) {
+        arreglo[_i2][j] += "des4523";
+      }
     }
 
     res.render('userspace.ejs', {

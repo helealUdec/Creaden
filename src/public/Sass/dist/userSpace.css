@@ -177,3 +177,48 @@
   width: 250px;
   height: 250px;
 }
+
+@media (max-width: 950px) {
+  .userSpaceConteiner {
+    width: 80%;
+  }
+}
+@media (max-width: 650px) {
+  .userSpaceConteiner {
+    width: 90%;
+  }
+}
+@media (max-width: 500px) {
+  .userSpaceConteiner {
+    width: 80%;
+  }
+}
+@media (max-width: 500px) {
+  .userSpaceConteiner {
+    width: 90%;
+  }
+
+  .userImage {
+    width: 80px;
+    height: 60px;
+    border-radius: 50px;
+  }
+
+  .userTextArea .contenedorForm {
+    flex-wrap: wrap;
+  }
+  .userTextArea .contenedorForm .userText {
+    width: 100%;
+  }
+  .userTextArea .contenedorForm .toPost {
+    margin-top: 30px;
+  }
+  .userTextArea .contenedorForm form {
+    margin-top: 30px;
+  }
+}
+@media (max-height: 500px) {
+  body {
+    height: 600px;
+  }
+}

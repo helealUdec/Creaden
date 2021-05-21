@@ -127,14 +127,16 @@ $height: 750px;
      }
      .loginConteiner {
           height: $height;
+          width: 90%;
      }
 
      .loginFormConteiner {
+         
           .loginForm {
 
                .loginFormUser,
                .loginFormPassword {
-                    width: 100%;
+                    width: 90%;
 
                     input {
                          width: 100%;
@@ -143,5 +145,11 @@ $height: 750px;
                }
           }
 
+     }
+}
+
+@media (max-height: 500px) {
+     body {
+          height: 700px;
      }
 }

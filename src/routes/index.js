@@ -89,7 +89,7 @@ router.get('/userspace:userName', (req, res) => {
         let arreglo = [];
         for (let i = 0; i < n; i++) {
             let imageUrl;
-            if (data[i].imageUrl == null) imageUrl = "vacio";
+            if (data[i].imageUrl == null) imageUrl = "vacio12Se";
             else imageUrl = data[i].imageUrl;
             arreglo[i] = [
                 data[i].id,
@@ -99,7 +99,12 @@ router.get('/userspace:userName', (req, res) => {
                 imageUrl
             ];
         }
-
+        for(let i = 0; i < arreglo.length; i++) {
+            for(let j= 0; j < arreglo[i].length; j++) {
+                arreglo[i][j] += "des4523";
+                
+            }
+        }
         res.render('userspace.ejs', { datos: arreglo, userName: userName });
     });
 
@@ -155,6 +160,12 @@ router.post('/userspace:userName', upload.any(), (req, res) => {
                 texto,
                 imageUrl
             ];
+        }
+        for(let i = 0; i < arreglo.length; i++) {
+            for(let j= 0; j < arreglo[i].length; j++) {
+                arreglo[i][j] += "des4523";
+                
+            }
         }
 
         res.render('userspace.ejs', { datos: arreglo, userName: userName });
