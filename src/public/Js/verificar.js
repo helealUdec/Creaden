@@ -9,6 +9,11 @@ botton.style.color = "#fff";
 botton.style.background = "#eee";
 // comprobar que la cantidad de texto sea la adecuada
 userName.addEventListener('keyup', (evt) => {
+     if(String.fromCharCode(evt.keyCode) == " ") {
+          let textoAux = userName.value;
+          textoAux = textoAux.replace(/ /g, "");
+          userName.value = textoAux;
+     }
      comprobar(evt);
 });
 password.addEventListener('keyup', (evt) => {
@@ -47,7 +52,7 @@ confirm.addEventListener('keyup', (evt) => {
 function comprobar(evt) {
      let texto = evt.target.value;
      if (texto.length <= 6) {
-          console.log(texto.length);
+          
           evt.target.style.color = 'red';
      } else {
           evt.target.style.color = 'grey';

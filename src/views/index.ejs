@@ -9,17 +9,27 @@
 
 <body>
      <!-- formulario de ingrreso -->
-               <%- include('partials/formLogin')%>
-               <input type="submit" value="Iniciar Sesion">
-               <a href="register">Registrarse</a>
-          </form>
+     <%- include('partials/formLogin')%>
+     <input type="submit" value="Iniciar Sesion">
+     <a href="register">Registrarse</a>
+     </form>
      </section>
-</div>
-<script src="/Js/ingrreso.js"></script>
-<script>
-     if(<%= inicio%>) alert('inicio exitoso');
-     if(<%= cancel%>) alert('algo anda mal');
-</script>
+     </div>
+     
+     <script>
+          let userName = document.querySelector('.loginUserName');
+
+          userName.addEventListener('keyup', (evt) => {
+               if (String.fromCharCode(evt.keyCode) == " ") {
+                    let textoAux = userName.value;
+                    textoAux = textoAux.replace(/ /g, "");
+                    userName.value = textoAux;
+               }
+
+          });
+          if ( <%= inicio %> ) alert('inicio exitoso');
+          if ( <%= cancel %> ) alert('algo anda mal');
+     </script>
 </body>
 
 </html>

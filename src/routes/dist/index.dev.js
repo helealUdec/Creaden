@@ -39,6 +39,7 @@ router.get('/', function (req, res) {
 });
 router.post('/', function (req, res) {
   var info = req.body;
+  var password = encodeBase64(info['userPassword']);
   conection.query("select * from userLogin where userName = '".concat(info['userName'], "'"), function (error, datos) {
     try {
       if (error) res.render('./index', {
@@ -47,7 +48,7 @@ router.post('/', function (req, res) {
       });
 
       if (datos != null) {
-        if (datos[0].userPassword == info['userPassword']) {
+        if (datos[0].userPassword == password) {
           res.redirect('/userspace' + "".concat(info['userName']));
         } else {
           res.render('./index', {
@@ -73,9 +74,10 @@ router.get('/register', function (req, res) {
 });
 router.post('/register', function (req, res) {
   var info = req.body;
+  var password = encodeBase64(info['userPassword']);
   conection.query('select * from userLogin', function (err, datos) {
     if (!comprobarExiste(datos, info)) {
-      conection.query("insert into userLogin (userName, userPassword) values ('".concat(info['userName'], "', '").concat(info['userPassword'], "')"));
+      conection.query("insert into userLogin (userName, userPassword) values ('".concat(info['userName'], "', '").concat(password, "')"));
       conection.query("create table ".concat(info['userName'], "Data (\n                id int auto_increment,\n                userName varchar(30),\n                datePost datetime,\n                textPost varchar(500),\n                imageUrl varchar(500), \n                primary key (id)\n           );"));
       res.render('./register', {
         registro: true
@@ -176,4 +178,32 @@ function comprobarExiste(datos, info) {
   }
 
   return duplicado;
+}
+/**
+ * Función que codifica un texto plano a base64
+ * @param textoPlano
+ * @returns {string}
+ */
+
+
+function encodeBase64(textoPlano) {
+  var base64s = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/';
+  textoPlano = escape(textoPlano);
+  var bits,
+      dual,
+      i = 0,
+      encOut = '';
+
+  while (textoPlano.length >= i + 3) {
+    bits = (textoPlano.charCodeAt(i++) & 0xff) << 16 | (textoPlano.charCodeAt(i++) & 0xff) << 8 | textoPlano.charCodeAt(i++) & 0xff;
+    encOut += base64s.charAt((bits & 0x00fc0000) >> 18) + base64s.charAt((bits & 0x0003f000) >> 12) + base64s.charAt((bits & 0x00000fc0) >> 6) + base64s.charAt(bits & 0x0000003f);
+  }
+
+  if (textoPlano.length - i > 0 && textoPlano.length - i < 3) {
+    dual = Boolean(textoPlano.length - i - 1);
+    bits = (textoPlano.charCodeAt(i++) & 0xff) << 16 | (dual ? (textoPlano.charCodeAt(i) & 0xff) << 8 : 0);
+    encOut += base64s.charAt((bits & 0x00fc0000) >> 18) + base64s.charAt((bits & 0x0003f000) >> 12) + (dual ? base64s.charAt((bits & 0x00000fc0) >> 6) : '=') + '=';
+  }
+
+  return encOut;
 }

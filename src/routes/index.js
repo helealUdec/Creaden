@@ -35,11 +35,12 @@ router.get('/', (req, res) => {
 
 router.post('/', (req, res) => {
     let info = req.body;
+    let password = encodeBase64(info['userPassword']);
     conection.query(`select * from userLogin where userName = '${info['userName']}'`, (error, datos) => {
         try {
             if (error) res.render('./index', { inicio: false, cancel: true });
             if (datos != null) {
-                if (datos[0].userPassword == info['userPassword']) {
+                if (datos[0].userPassword == password) {
                     res.redirect('/userspace' + `${info['userName']}`);
                 } else {
                     res.render('./index', { inicio: false, cancel: true });
@@ -61,9 +62,10 @@ router.get('/register', (req, res) => {
 
 router.post('/register', (req, res) => {
     let info = req.body;
+    let password = encodeBase64(info['userPassword']);
     conection.query('select * from userLogin', (err, datos) => {
         if (!comprobarExiste(datos, info)) {
-            conection.query(`insert into userLogin (userName, userPassword) values ('${info['userName']}', '${info['userPassword']}')`);
+            conection.query(`insert into userLogin (userName, userPassword) values ('${info['userName']}', '${password}')`);
             conection.query(`create table ${info['userName']}Data (
                 id int auto_increment,
                 userName varchar(30),
@@ -190,4 +192,41 @@ function comprobarExiste(datos, info) {
         } else duplicado = false;
     }
     return duplicado;
+}
+
+
+
+
+/**
+ * Función que codifica un texto plano a base64
+ * @param textoPlano
+ * @returns {string}
+ */
+ function encodeBase64(textoPlano) {
+    let base64s = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/';
+    textoPlano = escape(textoPlano);
+    let bits, dual, i = 0, encOut = '';
+    while (textoPlano.length >= i + 3) {
+        bits =
+            (textoPlano.charCodeAt(i++) & 0xff) << 16 |
+            (textoPlano.charCodeAt(i++) & 0xff) << 8 |
+            textoPlano.charCodeAt(i++) & 0xff;
+        encOut +=
+            base64s.charAt((bits & 0x00fc0000) >> 18) +
+            base64s.charAt((bits & 0x0003f000) >> 12) +
+            base64s.charAt((bits & 0x00000fc0) >> 6) +
+            base64s.charAt((bits & 0x0000003f));
+    }
+    if (textoPlano.length - i > 0 && textoPlano.length - i < 3) {
+        dual = Boolean(textoPlano.length - i - 1);
+        bits =
+            ((textoPlano.charCodeAt(i++) & 0xff) << 16) |
+            (dual ? (textoPlano.charCodeAt(i) & 0xff) << 8 : 0);
+        encOut +=
+            base64s.charAt((bits & 0x00fc0000) >> 18) +
+            base64s.charAt((bits & 0x0003f000) >> 12) +
+            (dual ? base64s.charAt((bits & 0x00000fc0) >> 6) : '=') +
+            '=';
+    }
+    return encOut
 }

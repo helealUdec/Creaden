@@ -28,7 +28,10 @@
 <script>
 
      let registro = <%= registro%>;
-     if(registro) alert('Registro exitoso');
+     if(registro) {
+          alert('Registro exitoso');
+          window.location="/";
+     }
       
 </script>
 </body>
