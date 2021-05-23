@@ -95,6 +95,7 @@ router.get('/userspace:userName', function (req, res) {
 
     for (var i = 0; i < n; i++) {
       var imageUrl = void 0;
+      if (data[i].textPost == null) textPost = "vacio12Se";
       if (data[i].imageUrl == null) imageUrl = "vacio12Se";else imageUrl = data[i].imageUrl;
       arreglo[i] = [data[i].id, data[i].userName, data[i].datePost, data[i].textPost, imageUrl];
     }
@@ -157,10 +158,7 @@ router.post('/userspace:userName', upload.any(), function (req, res) {
       }
     }
 
-    res.render('userspace.ejs', {
-      datos: arreglo,
-      userName: userName
-    });
+    res.redirect("userspace".concat(userName));
   });
 });
 module.exports = router; // verificar si el nombre de usuario existe

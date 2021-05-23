@@ -1,0 +1,25 @@
+.animate__animated.animate__bounceInUp {
+  --animate-duration: 2s;
+}
+
+* {
+  box-sizing: border-box;
+  font-family: "Nunito", sans-serif;
+}
+
+body {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background-color: #3c017c;
+  background-color: linear-gradient(0deg, #6b11cb 0%, #2575fc 100%);
+  background-attachment: fixed;
+  background-image: url("/Img/fondoImage.png");
+  backdrop-filter: blur(2.5px);
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+}

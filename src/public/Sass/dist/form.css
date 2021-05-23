@@ -1,10 +1,10 @@
 .loginConteiner {
-  background-color: #fff;
+  background-color: rgba(255, 255, 255, 0.9);
   flex-grow: 0.1;
   display: flex;
   flex-flow: column nowrap;
   border-radius: 15px;
-  box-shadow: 5px 5px 2px 2px rgba(238, 238, 238, 0.3);
+  box-shadow: 4px 4px 2px 2px rgba(0, 0, 0, 0.3);
 }
 .loginConteiner img {
   width: 200px;
@@ -12,7 +12,7 @@
 }
 
 .loginHeader {
-  background-color: #851de0;
+  background-color: #851de0c5;
   color: #FFF;
   text-align: center;
   font-size: 15px;
@@ -35,6 +35,9 @@
 .loginFormConteiner .loginForm a {
   margin-top: 10px;
   text-decoration: none;
+}
+.loginFormConteiner .loginForm a:hover {
+  transform: scale(1.1);
 }
 .loginFormConteiner .loginForm .loginFormUser,
 .loginFormConteiner .loginForm .loginFormPassword, .loginFormConteiner .loginForm .confirmPassword {
@@ -83,6 +86,7 @@
   /* change the direction of the change here */
   color: #fff;
   text-decoration: none;
+  transform: scale(1.1);
 }
 
 .confirmPassword {

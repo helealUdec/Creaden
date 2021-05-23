@@ -1,5 +1,5 @@
 $background: #fff;
-$headerColor: #851de0;
+$headerColor: #851de0c5;
 $button: #c355f5;
 $color: #FFF;
 $hover: #52057b;
@@ -8,12 +8,12 @@ $height: 750px;
 .loginConteiner {
 
      
-     background-color: #fff;
+     background-color: rgba(255, 255, 255, 0.9);
      flex-grow: 0.1;
      display: flex;
      flex-flow: column nowrap;
      border-radius: 15px;
-     box-shadow: 5px 5px 2px 2px rgba($color: #eee, $alpha: 0.3);
+     box-shadow: 4px 4px 2px 2px rgba($color: rgb(0, 0, 0), $alpha: 0.3);
 
      img {
           width: 200px;
@@ -45,6 +45,9 @@ $height: 750px;
           a {
                margin-top: 10px;
                text-decoration: none;
+               &:hover {
+                    transform: scale(1.1);
+               }
           }
           
           .loginFormUser,
@@ -102,6 +105,7 @@ $height: 750px;
                     /* change the direction of the change here */
                     color: #fff;
                     text-decoration: none;
+                    transform: scale(1.1);
                }
 
           }

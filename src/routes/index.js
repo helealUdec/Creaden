@@ -91,6 +91,7 @@ router.get('/userspace:userName', (req, res) => {
         let arreglo = [];
         for (let i = 0; i < n; i++) {
             let imageUrl;
+            if(data[i].textPost == null) textPost = "vacio12Se";
             if (data[i].imageUrl == null) imageUrl = "vacio12Se";
             else imageUrl = data[i].imageUrl;
             arreglo[i] = [
@@ -170,7 +171,7 @@ router.post('/userspace:userName', upload.any(), (req, res) => {
             }
         }
 
-        res.render('userspace.ejs', { datos: arreglo, userName: userName });
+        res.redirect(`userspace${userName}`);
     });
 
 
