@@ -122,6 +122,7 @@
   outline: none;
   margin-left: 10px;
   margin-bottom: 5px;
+  overflow: auto;
 }
 
 .userTextArea .contenedorForm .userText:empty::before {
@@ -242,6 +243,7 @@
 .userPublicationArea .userPost {
   width: 100%;
   border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+  overflow-wrap: break-word;
 }
 
 .userPublicationArea .userPost .userPostArea {
@@ -305,6 +307,10 @@
 }
 
 .conteinerVisible {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: 2;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -331,6 +337,7 @@
 }
 
 .pHidden {
+  display: block;
   border-radius: 0 0 15px 15px;
   padding: 10px;
   background-color: rgba(110, 4, 172, 0.8);
@@ -341,6 +348,15 @@
 }
 
 @media (max-width: 950px) {
+  .conteinerVisible {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-flow: row wrap;
+            flex-flow: row wrap;
+  }
   .imageBig, .pHidden {
     width: 75%;
   }
@@ -356,6 +372,9 @@
 }
 
 @media (max-width: 500px) {
+  .pHidden {
+    height: auto;
+  }
   .imageBig, .pHidden {
     width: 85%;
   }
@@ -375,13 +394,22 @@
         flex-wrap: wrap;
   }
   .userTextArea .contenedorForm .userText {
-    width: 100%;
+    width: 70%;
   }
   .userTextArea .contenedorForm .toPost {
     margin-top: 30px;
   }
   .userTextArea .contenedorForm form {
     margin-top: 30px;
+  }
+  .labelImage {
+    margin: 0;
+  }
+}
+
+@media (max-width: 315px) {
+  .labelImage, .toPost {
+    margin: 0 !important;
   }
 }
 

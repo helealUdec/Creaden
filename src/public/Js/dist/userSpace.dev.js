@@ -50,6 +50,7 @@ try {
     var userText = document.createElement('div');
     userText.className = 'userText';
     var text = document.createElement('p');
+    text.classList.add('pTextPost');
     var image = document.createElement('img');
     if (data[i] != "vacio12Se") text.innerText = data[i];
     if (text.innerText.includes('null')) text.innerText = '';
@@ -67,11 +68,13 @@ try {
         textTemp != "" ? p.innerText = textTemp : p.innerText = "";
         div.setAttribute('id', 'divVisible');
         imageBig.setAttribute('src', imageTemp.src);
+        div.classList.remove('conteinerHidden');
         div.classList.add('conteinerVisible');
         console.log(div);
         div.addEventListener('click', function (evt) {
           if (evt.target.getAttribute('id') == 'divVisible') {
             div.classList.remove('conteinerVisible');
+            div.classList.add('conteinerHidden');
           }
         });
       });

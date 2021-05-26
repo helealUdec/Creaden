@@ -54,6 +54,7 @@ try {
           let userText = document.createElement('div');
           userText.className = 'userText';
           let text = document.createElement('p');
+          text.classList.add('pTextPost');
           let image = document.createElement('img');
           if (data[i] != "vacio12Se") text.innerText = data[i];
           if (text.innerText.includes('null')) text.innerText = '';
@@ -73,12 +74,14 @@ try {
 
                     div.setAttribute('id', 'divVisible')
                     imageBig.setAttribute('src', imageTemp.src);
+                    div.classList.remove('conteinerHidden');
                     div.classList.add('conteinerVisible');
                     console.log(div);
 
                     div.addEventListener('click', (evt) => {
                          if (evt.target.getAttribute('id') == 'divVisible') {
                               div.classList.remove('conteinerVisible');
+                              div.classList.add('conteinerHidden');
 
                          }
                     });

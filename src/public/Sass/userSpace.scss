@@ -90,6 +90,8 @@ $height: 600px;
                outline: none;
                margin-left: 10px;
                margin-bottom: 5px;
+               overflow: auto;
+
                
                &:empty::before {
                     
@@ -159,6 +161,8 @@ $height: 600px;
 
 }
 
+
+
 .countLetter {
      margin: 0;
      margin-top: 40px;
@@ -213,8 +217,8 @@ $height: 600px;
 
      .userPost {
           width: 100%;
-
           border-bottom: 1px solid rgba($color: #000000, $alpha: 0.3);
+          overflow-wrap: break-word;
 
           .userPostArea {
                width: 100%;
@@ -283,6 +287,10 @@ $height: 600px;
 }
 
 .conteinerVisible {
+     width: 100%;
+     height: 100%;
+     position: absolute;
+     z-index: 2;
      display: flex;
      flex-flow: column wrap;
      justify-content: center;
@@ -300,7 +308,7 @@ $height: 600px;
 }
 
 .pHidden {
-
+     display: block;
      border-radius: 0 0 15px 15px;
      padding: 10px;
      background-color: rgba(110, 4, 172, 0.8);
@@ -315,7 +323,10 @@ $height: 600px;
 // hacerlo adaptativo a celulares
 
 @media (max-width: 950px) {
-
+     .conteinerVisible {
+          display: flex;
+          flex-flow: row wrap;
+     }
      .imageBig, .pHidden {
           width: 75%;
      }
@@ -327,6 +338,7 @@ $height: 600px;
 
 
 @media (max-width: 650px) {
+ 
 
      .userSpaceConteiner {
           width: 90%;
@@ -337,6 +349,10 @@ $height: 600px;
 
 @media (max-width: 500px) {
 
+
+     .pHidden {
+          height: auto;
+     }
      
      .imageBig, .pHidden {
           width: 85%;
@@ -361,7 +377,7 @@ $height: 600px;
                flex-wrap: wrap;
 
                .userText {
-                    width: 100%;
+                    width: 70%;
                }
 
                .toPost {
@@ -374,6 +390,18 @@ $height: 600px;
           }
 
      }
+
+     .labelImage {
+          margin: 0;
+     }
+}
+
+@media (max-width: 315px){
+
+     .labelImage, .toPost {
+          margin: 0 !important;
+          
+     }
 }
 
 @media (max-width: 300px){
@@ -381,6 +409,7 @@ $height: 600px;
           height: 250px  !important;
           width: 100% !important;
      }
+
 }
 
 @media (max-height: 500px) {
