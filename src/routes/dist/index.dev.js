@@ -53,6 +53,9 @@ router.post('/', function (req, res) {
             });
 
             if (datos) {
+              console.log(password);
+              console.log(datos[0].userPassword);
+
               if (datos[0].userPassword == password) {
                 res.redirect('/userspace' + "".concat(info['userName']));
               } else {
@@ -98,26 +101,28 @@ router.get('/userspace:userName', function (req, res) {
   var userName = req.params.userName; // envio las publicaciones del usuario
 
   conection.query("select * from  ".concat(userName, "Data"), function (error, data) {
-    var n = data.length;
-    var arreglo = [];
+    try {
+      var n = data.length;
+      var arreglo = [];
 
-    for (var i = 0; i < n; i++) {
-      var imageUrl = void 0;
-      if (data[i].textPost == null) textPost = "vacio12Se";
-      if (data[i].imageUrl == null) imageUrl = "vacio12Se";else imageUrl = data[i].imageUrl;
-      arreglo[i] = [data[i].id, data[i].userName, data[i].datePost, data[i].textPost, imageUrl];
-    }
-
-    for (var _i = 0; _i < arreglo.length; _i++) {
-      for (var j = 0; j < arreglo[_i].length; j++) {
-        arreglo[_i][j] += "des4523";
+      for (var i = 0; i < n; i++) {
+        var imageUrl = void 0;
+        if (data[i].textPost == null) textPost = "vacio12Se";
+        if (data[i].imageUrl == null) imageUrl = "vacio12Se";else imageUrl = data[i].imageUrl;
+        arreglo[i] = [data[i].id, data[i].userName, data[i].datePost, data[i].textPost, imageUrl];
       }
-    }
 
-    res.render('userspace.ejs', {
-      datos: arreglo,
-      userName: userName
-    });
+      for (var _i = 0; _i < arreglo.length; _i++) {
+        for (var j = 0; j < arreglo[_i].length; j++) {
+          arreglo[_i][j] += "des4523";
+        }
+      }
+
+      res.render('userspace.ejs', {
+        datos: arreglo,
+        userName: userName
+      });
+    } catch (error) {}
   });
 });
 router.post('/userspace:userName', upload.any(), function (req, res) {

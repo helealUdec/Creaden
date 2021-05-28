@@ -43,6 +43,8 @@ router.post('/', (req, res) => {
                     try {
                         if (error) res.render('./index', { inicio: false, cancel: true });
                         if (datos) {
+                            console.log(password );
+                            console.log(datos[0].userPassword);
                             if (datos[0].userPassword == password) {
                                 res.redirect('/userspace' + `${info['userName']}`);
                             } else {
@@ -97,6 +99,7 @@ router.get('/userspace:userName', (req, res) => {
 
     // envio las publicaciones del usuario
     conection.query(`select * from  ${userName}Data`, (error, data) => {
+       try {
         let n = data.length;
         let arreglo = [];
         for (let i = 0; i < n; i++) {
@@ -119,6 +122,9 @@ router.get('/userspace:userName', (req, res) => {
             }
         }
         res.render('userspace.ejs', { datos: arreglo, userName: userName });
+       } catch (error) {
+           
+       }
     });
 
 });
