@@ -43,7 +43,7 @@ router.post('/', (req, res) => {
                     try {
                         if (error) res.render('./index', { inicio: false, cancel: true });
                         if (datos) {
-                            console.log(password );
+                           
                             console.log(datos[0].userPassword);
                             if (datos[0].userPassword == password) {
                                 res.redirect('/userspace' + `${info['userName']}`);

@@ -53,7 +53,6 @@ router.post('/', function (req, res) {
             });
 
             if (datos) {
-              console.log(password);
               console.log(datos[0].userPassword);
 
               if (datos[0].userPassword == password) {
