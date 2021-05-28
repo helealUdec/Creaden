@@ -38,33 +38,41 @@ router.get('/', function (req, res) {
   });
 });
 router.post('/', function (req, res) {
-  var info = req.body;
-  var password = encodeBase64(info['userPassword']);
-  conection.query("select * from userLogin where userName = '".concat(info['userName'], "'"), function (error, datos) {
-    try {
-      if (error) res.render('./index', {
-        inicio: false,
-        cancel: true
-      });
+  try {
+    var info = req.body;
 
-      if (datos != null) {
-        if (datos[0].userPassword == password) {
-          res.redirect('/userspace' + "".concat(info['userName']));
-        } else {
-          res.render('./index', {
-            inicio: false,
-            cancel: true
-          });
-        }
-      }
-    } catch (errores) {
-      console.log(errores);
-      res.render('./index', {
-        inicio: false,
-        cancel: true
-      });
+    if (info != undefined || info != null) {
+      var password = encodeBase64(info['userPassword']);
+
+      try {
+        conection.query("select * from userLogin where userName = '".concat(info['userName'], "'"), function (error, datos) {
+          try {
+            if (error) res.render('./index', {
+              inicio: false,
+              cancel: true
+            });
+
+            if (datos) {
+              if (datos[0].userPassword == password) {
+                res.redirect('/userspace' + "".concat(info['userName']));
+              } else {
+                res.render('./index', {
+                  inicio: false,
+                  cancel: true
+                });
+              }
+            }
+          } catch (errores) {
+            console.log(errores);
+            res.render('./index', {
+              inicio: false,
+              cancel: true
+            });
+          }
+        });
+      } catch (error) {}
     }
-  });
+  } catch (error) {}
 }); // registro de las personas
 
 router.get('/register', function (req, res) {

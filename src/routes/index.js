@@ -34,24 +34,34 @@ router.get('/', (req, res) => {
 });
 
 router.post('/', (req, res) => {
-    let info = req.body;
-    let password = encodeBase64(info['userPassword']);
-    conection.query(`select * from userLogin where userName = '${info['userName']}'`, (error, datos) => {
-        try {
-            if (error) res.render('./index', { inicio: false, cancel: true });
-            if (datos != null) {
-                if (datos[0].userPassword == password) {
-                    res.redirect('/userspace' + `${info['userName']}`);
-                } else {
-                    res.render('./index', { inicio: false, cancel: true });
-                }
+    try {
+        let info = req.body;
+        if (info != undefined || info != null) {
+            let password = encodeBase64(info['userPassword']);
+            try {
+                conection.query(`select * from userLogin where userName = '${info['userName']}'`, (error, datos) => {
+                    try {
+                        if (error) res.render('./index', { inicio: false, cancel: true });
+                        if (datos) {
+                            if (datos[0].userPassword == password) {
+                                res.redirect('/userspace' + `${info['userName']}`);
+                            } else {
+                                res.render('./index', { inicio: false, cancel: true });
+                            }
+                        }
+                    } catch (errores) {
+                        console.log(errores);
+                        res.render('./index', { inicio: false, cancel: true });
+                    }
+    
+                });
+            } catch (error) {
+                
             }
-        } catch (errores) {
-            console.log(errores);
-            res.render('./index', { inicio: false, cancel: true });
         }
+    } catch (error) {
 
-    });
+    }
 
 });
 
@@ -91,7 +101,7 @@ router.get('/userspace:userName', (req, res) => {
         let arreglo = [];
         for (let i = 0; i < n; i++) {
             let imageUrl;
-            if(data[i].textPost == null) textPost = "vacio12Se";
+            if (data[i].textPost == null) textPost = "vacio12Se";
             if (data[i].imageUrl == null) imageUrl = "vacio12Se";
             else imageUrl = data[i].imageUrl;
             arreglo[i] = [
@@ -102,10 +112,10 @@ router.get('/userspace:userName', (req, res) => {
                 imageUrl
             ];
         }
-        for(let i = 0; i < arreglo.length; i++) {
-            for(let j= 0; j < arreglo[i].length; j++) {
+        for (let i = 0; i < arreglo.length; i++) {
+            for (let j = 0; j < arreglo[i].length; j++) {
                 arreglo[i][j] += "des4523";
-                
+
             }
         }
         res.render('userspace.ejs', { datos: arreglo, userName: userName });
@@ -164,10 +174,10 @@ router.post('/userspace:userName', upload.any(), (req, res) => {
                 imageUrl
             ];
         }
-        for(let i = 0; i < arreglo.length; i++) {
-            for(let j= 0; j < arreglo[i].length; j++) {
+        for (let i = 0; i < arreglo.length; i++) {
+            for (let j = 0; j < arreglo[i].length; j++) {
                 arreglo[i][j] += "des4523";
-                
+
             }
         }
 
@@ -203,7 +213,7 @@ function comprobarExiste(datos, info) {
  * @param textoPlano
  * @returns {string}
  */
- function encodeBase64(textoPlano) {
+function encodeBase64(textoPlano) {
     let base64s = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/';
     textoPlano = escape(textoPlano);
     let bits, dual, i = 0, encOut = '';
